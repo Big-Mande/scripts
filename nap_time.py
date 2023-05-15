@@ -1,17 +1,26 @@
 import pyautogui as mouse
-import keyboard as key
+from pynput import keyboard
+from pynput.keyboard import Key, Controller, Listener
 import time
+
+## stop flag
+staaaaaaap_haha = False
+
+## lil function to listen to keyboard
+def on_press(key):
+    global staaaaaaap_haha
+    if key == keyboard.Key.esc:
+        print('naptime over lil bro')
+        print('script ending...')
+        staaaaaaap_haha = True
+
+## set up errything for infinite l00ps
+listener = keyboard.Listener(on_press=on_press)
+listener.start()
+
 print('aight its naptime!')
 print('script is running...')
-while(True):
-    try:
-        mouse.moveRel(540, 0, 3)
-        mouse.moveRel(-540, 0, 3)
-        time.sleep(1)
-        if key.is_pressed('q'):
-            print('naptime over homie')
-            print('ending script...')
-            break
-    except Exception as e:
-        print(f"oopsie an error ocurred: {e}")
-        continue
+while not staaaaaaap_haha:
+    mouse.moveRel(340, 0, 3)
+    mouse.moveRel(-340, 0, 3)
+        
